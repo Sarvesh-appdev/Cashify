@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String FIREBASE_URL = "https://quickcash-summer15-default-rtdb.firebaseio.com/";
 
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        textView = findViewById(R.id.textView);
         connectFirebase();
         writeToFirebase();
         listentoDataChange();
@@ -47,14 +48,15 @@ public class MainActivity extends AppCompatActivity {
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                final String readValue = snapshot.getValue(String.class);
+                textView.setText("Success:"+readValue);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        })
+        });
     }
 
 
