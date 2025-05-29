@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "935650895105",
+    "project_id": "quickcash-summer15",
+    "storage_bucket": "quickcash-summer15.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935650895105:android:3fa4d765b7847146656700",
+        "android_client_info": {
+          "package_name": "com.example.quickcash_summer15"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkAi0oMw9f-SA1cETPa0C6rmOm5aVrWlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
