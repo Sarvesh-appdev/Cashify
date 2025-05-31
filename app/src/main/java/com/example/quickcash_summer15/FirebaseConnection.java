@@ -25,7 +25,7 @@ public class FirebaseConnection {
     }
 
     private void writeToFirebase(){
-        dbref.setValue("Hello CSCI 3130");
+        dbref.setValue("Hello  3130");
     }
 
     private void listentoDataChange(){
