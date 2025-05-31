@@ -19,13 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseDatabase firebaseDatabase;
 
-    private DatabaseReference dbref;
-
-    private static final String FIREBASE_URL = "https://quickcash-summer15-default-rtdb.firebaseio.com/";
-
-    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,35 +31,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        textView = findViewById(R.id.textView);
-        connectFirebase();
-        writeToFirebase();
-        listentoDataChange();
+
     }
 
-    private void listentoDataChange(){
-
-        dbref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                final String readValue = snapshot.getValue(String.class);
-                textView.setText("Success:"+readValue);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-
-    private void connectFirebase(){
-        firebaseDatabase = FirebaseDatabase.getInstance(FIREBASE_URL);
-        dbref = firebaseDatabase.getReference("message");
-    }
-
-    private void writeToFirebase(){
-        dbref.setValue("Hello CSCI 3130");
-    }
 }
