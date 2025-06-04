@@ -3,6 +3,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+
+
 public class InputValidatorTest {
 
     @Test
@@ -25,5 +27,6 @@ public class InputValidatorTest {
         assertEquals("Password must be at least 6 characters", InputTesting.validatePassword("123"));
         assertNull(InputTesting.validatePassword("strongpass123"));
     }
+
 
 }
