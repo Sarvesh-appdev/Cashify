@@ -67,12 +67,6 @@ public class MainActivity extends AppCompatActivity {
                     hasError = true;
                 }
 
-                // Validate password using PasswordValidation class
-                else if (!InputTesting.isValidPassword(password)) {
-                    passwordEditText.setError("Password must be at least 8 characters long, " +
-                            "contain uppercase, lowercase, digit, and special character.");
-                    hasError = true;
-                }
                 if (hasError) return;
                 Auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
@@ -96,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                         } else {
                                             Toast.makeText(getApplicationContext(),
                                                     "Database Error: " + dbTask.getException().getMessage(),
-                                                   Toast.LENGTH_LONG).show();
+                                                    Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
@@ -105,14 +99,10 @@ public class MainActivity extends AppCompatActivity {
                                         "Auth Error: " + task.getException().getMessage(),
                                         Toast.LENGTH_LONG).show();
                             }
-                 });
-
-                // If everything is valid, display success message (this could be replaced with actual logic)
-                Toast.makeText(MainActivity.this, "Form Submitted Successfully", Toast.LENGTH_SHORT).show();
+                        });
             }
         });
     }
-
     public void loadRoleSpinner() {
         Spinner roleSpinner = findViewById(R.id.roleSpinner);
         List<String> roles = new ArrayList<>();

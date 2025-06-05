@@ -34,7 +34,6 @@ public class ExampleInstrumentedTest {
     public ActivityScenarioRule<MainActivity> activityRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
-
     @Test
     public void useAppContext() {
         // Context of the app under test.

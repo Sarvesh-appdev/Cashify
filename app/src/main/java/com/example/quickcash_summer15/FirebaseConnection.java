@@ -19,22 +19,22 @@ public class FirebaseConnection {
 
     private TextView textView;
 
-    private void connectFirebase(){
+    private void connectFirebase() {
         firebaseDatabase = FirebaseDatabase.getInstance(FIREBASE_URL);
         dbref = firebaseDatabase.getReference("message");
     }
 
-    private void writeToFirebase(){
+    private void writeToFirebase() {
         dbref.setValue("Hello  3130");
     }
 
-    private void listentoDataChange(){
+    private void listentoDataChange() {
 
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 final String readValue = snapshot.getValue(String.class);
-                textView.setText("Success:"+readValue);
+                textView.setText("Success:" + readValue);
             }
 
 
