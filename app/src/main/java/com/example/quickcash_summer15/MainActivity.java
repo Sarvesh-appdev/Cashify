@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button submitButton;
     private Spinner roleSpinner;
+    private EditText nameEditText;
 
     FirebaseAuth Auth;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordBox);
         submitButton = findViewById(R.id.registerButton);
         roleSpinner = findViewById(R.id.roleSpinner);
+        nameEditText = findViewById(R.id.name);
 
         Auth = FirebaseAuth.getInstance();
 
@@ -51,9 +53,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Get input values from EditTexts
+                String name = nameEditText.getText().toString().trim();
                 String email = emailEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
                 String selectedRole = roleSpinner.getSelectedItem().toString();
+
 
                 boolean hasError = false;
 
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                                     Map<String, Object> userData = new HashMap<>();
                                     userData.put("email", email);
                                     userData.put("role", selectedRole);
+                                    userData.put("name",name);
 
                                     dbRef.setValue(userData).addOnCompleteListener(dbTask -> {
                                         if (dbTask.isSuccessful()) {

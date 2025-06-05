@@ -23,6 +23,16 @@
                     android:text="Registration Page"
                     android:textSize="16sp"></TextView>
 
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="200dp"
+                    android:autofillHints=""
+                    android:hint="Enter your name"
+                    android:inputType="textPersonName"
+                    android:textSize="16sp"></EditText>
+
 
                 <EditText
                     android:id="@+id/emailBox"
