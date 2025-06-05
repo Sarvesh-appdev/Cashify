@@ -13,9 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 // Get input values from EditTexts
                 String email = emailEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
+                String selectedRole = roleSpinner.getSelectedItem().toString();
 
                 boolean hasError = false;
 
@@ -69,17 +74,38 @@ public class MainActivity extends AppCompatActivity {
                     hasError = true;
                 }
                 if (hasError) return;
+                Auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = Auth.getCurrentUser();
+                                if (user != null) {
+                                    String uid = user.getUid();
 
-                Auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                        if (task.isSuccessful()){
-                         FirebaseUser user = Auth.getCurrentUser();
+                                    // Save to Firebase Realtime Database
+                                    DatabaseReference dbRef = FirebaseDatabase.getInstance()
+                                            .getReference("Users").child(uid);
 
-                         Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
-                    }else{
-                    Toast.makeText(getApplicationContext(), "Registration failed:"+task.getException().getMessage(),
-                            Toast.LENGTH_LONG).show();
+                                    Map<String, Object> userData = new HashMap<>();
+                                    userData.put("email", email);
+                                    userData.put("role", selectedRole);
+
+                                    dbRef.setValue(userData).addOnCompleteListener(dbTask -> {
+                                        if (dbTask.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Registration successful", Toast.LENGTH_SHORT).show();
+                                            // Navigate to next screen or login page here if needed
+                                        } else {
+                                            Toast.makeText(getApplicationContext(),
+                                                    "Database Error: " + dbTask.getException().getMessage(),
+                                                   Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        "Auth Error: " + task.getException().getMessage(),
+                                        Toast.LENGTH_LONG).show();
                             }
-                });
+                 });
 
                 // If everything is valid, display success message (this could be replaced with actual logic)
                 Toast.makeText(MainActivity.this, "Form Submitted Successfully", Toast.LENGTH_SHORT).show();
