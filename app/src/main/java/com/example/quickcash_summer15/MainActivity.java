@@ -1,5 +1,6 @@
 package com.example.quickcash_summer15;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                                         if (dbTask.isSuccessful()) {
                                             Toast.makeText(getApplicationContext(), "Registration successful", Toast.LENGTH_SHORT).show();
                                             // Navigate to next screen or login page here if needed
+                                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                            startActivity(intent);
                                         } else {
                                             Toast.makeText(getApplicationContext(),
                                                     "Database Error: " + dbTask.getException().getMessage(),
