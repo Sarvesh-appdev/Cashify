@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuickCash-Summer15</string>
+    <string name="app_name">QuickCash_Summer15</string>
 
     <string-array name="role_array">
         <item>Employee</item>

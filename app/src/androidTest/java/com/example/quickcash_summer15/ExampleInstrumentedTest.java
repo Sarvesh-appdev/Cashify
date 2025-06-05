@@ -45,42 +45,42 @@ public class ExampleInstrumentedTest {
     @Test
     public void testEmptyEmailAndPassword() {
         // Click the submit button without entering email or password
-        onView(withId(R.id.submit)).perform(click());
+        onView(withId(R.id.registerButton)).perform(click());
 
         // Check if email field shows an error
-        onView(withId(R.id.editTextTextEmailAddress))
+        onView(withId(R.id.emailBox))
                 .check(matches(hasErrorText("Please enter an email")));
 
         // Check if password field shows an error
-        onView(withId(R.id.editTextTextPassword))
+        onView(withId(R.id.passwordBox))
                 .check(matches(hasErrorText("Please enter a password")));
     }
 
     @Test
     public void testInvalidPassword() {
         // Enter valid email but invalid password
-        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("test@example.com"), closeSoftKeyboard());
-        onView(withId(R.id.editTextTextPassword)).perform(typeText("pass"), closeSoftKeyboard());
+        onView(withId(R.id.emailBox)).perform(typeText("test@example.com"), closeSoftKeyboard());
+        onView(withId(R.id.passwordBox)).perform(typeText("pass"), closeSoftKeyboard());
 
         // Click the submit button
-        onView(withId(R.id.submit)).perform(click());
+        onView(withId(R.id.registerButton)).perform(click());
 
         // Check if password field shows an error for invalid password
-        onView(withId(R.id.editTextTextPassword))
+        onView(withId(R.id.passwordBox))
                 .check(matches(hasErrorText("Password must be at least 8 characters long, contain uppercase, lowercase, digit, and special character.")));
     }
 
     @Test
     public void testValidEmailAndPassword() {
         // Enter valid email and valid password
-        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("test@example.com"), closeSoftKeyboard());
-        onView(withId(R.id.editTextTextPassword)).perform(typeText("Password@123"), closeSoftKeyboard());
+        onView(withId(R.id.emailBox)).perform(typeText("test@example.com"), closeSoftKeyboard());
+        onView(withId(R.id.passwordBox)).perform(typeText("Password@123"), closeSoftKeyboard());
 
         // Click the submit button
-        onView(withId(R.id.submit)).perform(click());
+        onView(withId(R.id.registerButton)).perform(click());
 
         // Verify that no error messages are shown
-        onView(withId(R.id.editTextTextEmailAddress)).check(matches(withText("test@example.com")));
+        onView(withId(R.id.emailBox)).check(matches(withText("test@example.com")));
     }
 
 
