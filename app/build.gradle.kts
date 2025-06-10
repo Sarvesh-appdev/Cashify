@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.uiautomator)
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
     implementation ("com.google.firebase:firebase-auth:22.3.0")
     implementation(libs.appcompat)
     implementation(libs.material)
