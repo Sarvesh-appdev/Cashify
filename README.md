@@ -5,24 +5,22 @@ Cashify is a mobile task marketplace application that connects users with small,
 ---
 
 ## 🚀 Features
-
-- User authentication (Sign up / Login)
-- Post and browse local tasks
-- Accept and manage job requests
-- Real-time task status updates
-- Integrated online payment system (e.g., PayPal)
-- User rating and review system
+- User authentication
+- Task posting and browsing
+- Secure online payments (PayPal integration)
+- Real-time database updates
+- Unit testing and CI integration
 
 ---
 
 ## 🛠 Tech Stack
-
-- Frontend: React Native / React
-- Backend: Node.js, Express.js
-- Database: PostgreSQL / MongoDB
-- Authentication: JWT
-- Payments: PayPal API
-- Deployment: AWS / Render / Vercel
+- Java
+- Android Studio
+- Firebase
+- Git
+- JUnit
+- CI/CD
+- Agile Methodology
 
 
 ## 🧠 What I Learned
